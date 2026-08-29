@@ -96,14 +96,29 @@
             no.style.transform = "translate(" + x + "px, " + y + "px) scale(" + Math.max(0.5, 1 - dodges * 0.05) + ")";
         }
 
-        if (yes) {
-            yes.addEventListener('click', function() {
-                if (music) music.play().catch(function(e) { console.log("Audio en espera"); });
-                document.getElementById('game-screen').classList.add('hidden');
-                currentStep = 2;
-                document.getElementById('step-2').classList.remove('hidden');
+   // ETAPA 1: Botón SÍ (Versión blindada contra bloqueos de audio)
+if (yes) {
+    yes.addEventListener('click', function() {
+        // Ejecuta la música solo si el archivo existe y el navegador da permisos
+        if (music) {
+            music.play().catch(function(e) { 
+                // Si el navegador bloquea el autoplay, el error se ignora y el juego continúa
+                console.log("El navegador bloqueó el autoplay del audio temporalmente."); 
             });
         }
+        
+        // Pasa a la siguiente pantalla sin detenerse
+        const gameScreen = document.getElementById('game-screen');
+        const step2 = document.getElementById('step-2');
+        
+        if (gameScreen && step2) {
+            gameScreen.classList.add('hidden');
+            currentStep = 2;
+            step2.classList.remove('hidden');
+        }
+    });
+}
+
 
         if (datePicker) {
             const ahora = new Date();
