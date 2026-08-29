@@ -1,0 +1,232 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    background-color: #ffe6e6; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.step h2 {
+    font-size: 26px;
+    color: #2d3436;
+    text-align: center;
+    margin-bottom: 25px;
+    animation: slideIn 0.5s ease backwards;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 60px;
+    width: 240px;
+}
+
+#yes {
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+    transform: scale(var(--grow));
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+}
+
+#no {
+    width: 85px; 
+    height: 45px; 
+    padding: 0;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    position: absolute; 
+    right: 0;           
+    white-space: normal; 
+    text-align: center;
+    line-height: 1.2;
+    transition: transform 0.1s ease, left 0.1s ease, top 0.1s ease; 
+    z-index: 10;
+}
+
+.calendar-container, .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 260px;
+}
+
+#date-picker, .options-grid button, #confirm-date-btn {
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+#date-picker {
+    background-color: white;
+    color: #2d3436;
+    border: 2px solid #ffb3b3;
+    text-align: center;
+}
+
+#confirm-date-btn {
+    background-color: #ff7675;
+    color: white;
+    font-weight: bold;
+}
+
+.options-grid button {
+    background-color: white;
+    color: #d63031;
+    border: 2px solid #ffb3b3;
+    transition: all 0.2s ease;
+}
+
+.options-grid button:hover, #confirm-date-btn:hover {
+    background-color: #ff7675;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.hidden {
+    display: none !important;
+}
+
+#card-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 230, 230, 0.98);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    max-width: 360px;
+    width: 85%;
+    animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.heart-icon {
+    font-size: 50px;
+    animation: pulse 1.2s infinite;
+}
+
+.summary-box {
+    background-color: #fff0f0;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: left;
+    border-left: 5px solid #ff7675;
+}
+
+.summary-box p {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #2d3436;
+}
+
+/* DISEÑO DEL BOTÓN DE WHATSAPP */
+#whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #25D366; 
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 10px 0 15px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.2s ease;
+}
+
+#whatsapp-btn:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+}
+
+.final-msg {
+    color: #636e72;
+    font-size: 13px;
+    margin: 0;
+}
+
+@keyframes popUp {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+.floating-heart {
+    position: absolute;
+    color: #ff7675;
+    pointer-events: none;
+    bottom: -30px;
+    opacity: 0.8;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Elementos de Corazones Flotantes del fondo */
+.floating-heart {
+    position: absolute;
+    pointer-events: none;
+    bottom: -30px;
+    opacity: 0.8;
+    user-select: none;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
