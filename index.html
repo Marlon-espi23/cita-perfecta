@@ -61,10 +61,11 @@
                 <p>🍕 <strong>Comida:</strong> <span id="summary-food">-</span></p>
             </div>
             
-            <!-- ENLACE DE WHATSAPP DIRECTO (Sin target="_blank" para saltar el bloqueo) -->
-            <a id="whatsapp-btn" href="#" style="text-decoration: none;">
-                Enviar a mi WhatsApp
-            </a>
+          <!-- CAMBIADO: Se forzó target="_self" para evitar que el navegador bloquee la ventana -->
+<a id="whatsapp-btn" href="#" target="_self" style="text-decoration: none;">
+    Enviar a mi WhatsApp
+</a>
+
             
             <p class="final-msg">Prepara tu mejor outfit. ¡Te quiero muchísimo! ✨</p>
         </div>
@@ -152,12 +153,12 @@
             });
         });
 
-        function showFinalCard() {
+              function showFinalCard() {
             document.getElementById('summary-date').textContent = choices.date;
             document.getElementById('summary-plan').textContent = choices.plan;
             document.getElementById('summary-food').textContent = choices.food;
             
-            const mensaje = "¡Hola! 💕 Ya armé el itinerario para nuestra próxima salida especial. MIRA LO QUE ELEGI:\n\n" +
+             const mensaje = "¡Hola! 💕 Ya armé el itinerario para nuestra próxima salida especial. MIRA LO QUE ELEGI:\n\n" +
                             "✨ 📅 *Fecha:* " + choices.date + "\n" +
                             "✨ 🎬 *Actividad:* " + choices.plan + "\n" +
                             "✨ 🍔 *Cena:* " + choices.food + "\n\n" +
@@ -165,8 +166,8 @@
             
             const whatsappBtn = document.getElementById('whatsapp-btn');
             if (whatsappBtn) {
-                // CORREGIDO: Usamos el método nativo directo de WhatsApp (Igual que la página de helados)
-                whatsappBtn.href = "https://whatsapp.com" + encodeURIComponent(mensaje);
+                // Formato exacto nativo de la API de WhatsApp sin redirección externa
+                whatsappBtn.href = "https://whatsapp.com" + encodeURIComponent(mensaje) + "&type=phone_number&app_absent=0";
             }
 
             document.getElementById('card-screen').classList.remove('hidden');
