@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- ESTA LÍNEA HACE QUE LA PÁGINA SE VEA GRANDE Y ADAPTADA A CELULARES -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Nuestra Cita Ideal</title>
     <link rel="stylesheet" href="styles.css">
@@ -59,9 +61,9 @@
                 <p>🍕 <strong>Comida:</strong> <span id="summary-food">-</span></p>
             </div>
             
-            <!-- ENLACE DE WHATSAPP DIRECTO Y PRE-DIRECCIONADO -->
-            <a id="whatsapp-btn" href="https://wa.me" style="text-decoration: none;">
-                Enviar cita
+            <!-- ENLACE DE WHATSAPP DIRECTO (Sin target="_blank" para saltar el bloqueo) -->
+            <a id="whatsapp-btn" href="#" style="text-decoration: none;">
+                Enviar a mi WhatsApp
             </a>
             
             <p class="final-msg">Prepara tu mejor outfit. ¡Te quiero muchísimo! ✨</p>
@@ -123,7 +125,6 @@
                     alert("Por favor, selecciona una fecha 🥺");
                     return;
                 }
-                // CORREGIDO: Formato de fecha reconstruido de manera exacta
                 const partes = datePicker.value.split('-');
                 choices.date = partes[2] + "/" + partes[1] + "/" + partes[0];
 
@@ -156,7 +157,7 @@
             document.getElementById('summary-plan').textContent = choices.plan;
             document.getElementById('summary-food').textContent = choices.food;
             
-           const mensaje = "¡Hola! 💕 Ya armé el itinerario para nuestra próxima salida especial. MIRA LO QUE ELEGI:\n\n" +
+            const mensaje = "¡Hola! 💕 Ya armé el itinerario para nuestra próxima salida especial. MIRA LO QUE ELEGI:\n\n" +
                             "✨ 📅 *Fecha:* " + choices.date + "\n" +
                             "✨ 🎬 *Actividad:* " + choices.plan + "\n" +
                             "✨ 🍔 *Cena:* " + choices.food + "\n\n" +
@@ -164,7 +165,8 @@
             
             const whatsappBtn = document.getElementById('whatsapp-btn');
             if (whatsappBtn) {
-                whatsappBtn.href = "https://wa.me?text=" + encodeURIComponent(mensaje);
+                // CORREGIDO: Usamos el método nativo directo de WhatsApp (Igual que la página de helados)
+                whatsappBtn.href = "https://whatsapp.com" + encodeURIComponent(mensaje);
             }
 
             document.getElementById('card-screen').classList.remove('hidden');
